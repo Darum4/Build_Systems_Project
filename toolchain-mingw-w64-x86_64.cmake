@@ -1,0 +1,19 @@
+set(CMAKE_SYSTEM_NAME Windows)
+set(CMAKE_SYSTEM_PROCESSOR x86_64)
+
+if(MINGW_ROOT STREQUAL "")
+    message(FATAL_ERROR "MINGW_ROOT is unset, it's required for building with MinGW.")
+endif()
+
+set(CMAKE_FIND_ROOT_PATH "${MINGW_ROOT}")
+
+if(IS_DIRECTORY ${MINGW_ROOT}/bin)
+    set(CMAKE_CXX_COMPILER ${MINGW_ROOT}/bin/x86_64-w64-mingw32-g++)
+else()
+    set(CMAKE_CXX_COMPILER x86_64-w64-mingw32-g++)
+endif()
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+
